@@ -49,14 +49,19 @@ export default function Home() {
 
 
   const handleIngredients = (name, cost, count) => {
-    if (name === 'Lettuce') {
-      setLetteceCount(pre => pre + count);
-    } else if (name === 'Bacon') {
-      setbaconCount(pre => pre + count);
-    } else if (name === 'Cheese') {
-      setcheeseCount(pre => pre + count);
-    } else if (name === 'Meat') {
-      setmeatCount(pre => pre + count);
+    switch(name){
+      case'Lettuce':
+        setLetteceCount(pre => pre + count);
+        break;
+      case'Bacon':
+        setbaconCount(pre => pre + count);
+        break;
+      case'Cheese':
+        setcheeseCount(pre => pre + count);
+        break;
+      case'Meat':
+        setmeatCount(pre => pre + count);
+        break;
     }
     cost > 0 ? data.setQuantity(name, 1) : data.setQuantity(name, -1);
   }
