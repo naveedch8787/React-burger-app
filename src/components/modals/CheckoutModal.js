@@ -1,16 +1,20 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from 'react'
 import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { GlobalContext } from '../../context/GlobalProvider';
+import PropTypes from 'prop-types';
 
 export default function CheckoutModal(props) {
+  CheckoutModal.propTypes = {
+    totalPrice: PropTypes.any,
+    callback:PropTypes.func
+  }
 
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
   const data = useContext(GlobalContext);
-  const [price,setPrice]=useState(props.totalPrice)
+  const price = props.totalPrice;
+
   useEffect(()=>{
     setOpen(pre=>!pre);
   },[])
@@ -51,14 +55,14 @@ export default function CheckoutModal(props) {
                         <div className="mt-2">
                           <ul className='list-disc'>
                             {
-                              data.User.data.ingredients.map(res => {
+                              data.user.ingredients.map(res => {
                                 return (<li key={res.name}>{res.name}&nbsp;&nbsp;{res.quantity}</li>)
                               })
                             }
                           </ul>
                         </div>
                         <div className="mt-2">
-                          <strong>Total Price : {(3.00 + price ).toFixed(2)}$</strong>
+                          <strong>Total Price : {(price).toFixed(2)}$</strong>
                         </div>
                         <div className="mt-2">
                           <h3>Continue to Checkout ?</h3>
@@ -69,7 +73,7 @@ export default function CheckoutModal(props) {
                   <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row">
                     <button
                       type="button"
-                      className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                      className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
                       onClick={() => {
                         setOpen(false);
                         props.callback(false);
@@ -79,7 +83,7 @@ export default function CheckoutModal(props) {
                     </button>
                     <button
                       type="button"
-                      className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                      className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                       onClick={() => setOpen(false)}
                       ref={cancelButtonRef}
                     >
