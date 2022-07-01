@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import CheckoutModal from './modals/CheckoutModal';
 import OrdersForm from './form/OrdersForm';
 import Burger from './Burger';
+const LETTUCE = 0.50;
+const BACON = 0.70;
+const CHEESE = 0.40;
+const MEAT = 1.30;
 
 export default function Home() {
   const initialPrice = 3.00;
@@ -29,7 +33,7 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    setPrice(initialPrice + (letteceCount * 0.50) + (meatCount * 1.30) + (cheeseCount * 0.40) + (baconCount * 0.70));
+    setPrice(initialPrice + (letteceCount * LETTUCE) + (meatCount * MEAT) + (cheeseCount * CHEESE) + (baconCount * BACON));
   }, [letteceCount, meatCount, cheeseCount, baconCount])
 
   const handleFormSubmit = (k) => {
