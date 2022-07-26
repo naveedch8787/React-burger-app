@@ -14,13 +14,13 @@ export default function Index() {
     user.logIn(localStorage.getItem('user'));
   }, []);
   return (
-      <div>
-        <Header/>
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/login" element={!user.User?<LoginPage />:<Navigate to="/" />}></Route>
-          <Route path="/order" element={user.User ? <Order /> : <Navigate to="/" />}></Route>
-        </Routes>
-      </div>
+    <div>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={!user.user ? <LoginPage /> : <Navigate to="/" />} />
+        <Route path="/order" element={user.user ? <Order /> : <Navigate to="/" />} />
+      </Routes>
+    </div>
   )
 }
