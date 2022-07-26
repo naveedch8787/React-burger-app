@@ -39,8 +39,9 @@ export default function GlobalProvider({ children }) {
   }
 
   const setOrders = (obj) => {
-    setUser((pre) => ({ ...pre, orders: [obj ,...user.orders] }));
+    setUser((pre) => ({ ...pre, orders: [obj, ...user.orders] }));
   }
+
   return (
     <GlobalContext.Provider value={{ user, setQuantity, setOrders, setDefaultQuantity }}>
       {children}

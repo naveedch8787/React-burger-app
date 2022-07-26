@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+
 const bacon = 'mt-2 w-full bg-orange-800 h-4';
 const meat = 'mt-2 w-[100%] bg-gradient-to-r from-amber-800 to-amber-900 h-12 rounded-md';
 const lettuce = 'mt-2 w-[100%] bg-gradient-to-r from-green-400 to-green-600 h-8 rounded-2xl';
 const cheese = 'mt-2 w-[100%] bg-gradient-to-r from-yellow-300 to-yellow-500 h-5 rounded-2xl';
+
 const Ingredient = ({type}) => {
   Ingredient.propTypes = {
     type: PropTypes.any,
@@ -12,6 +14,7 @@ const Ingredient = ({type}) => {
     <div className={type}></div>
   )
 }
+
 const Recipie = ({ count, children }) => {
   return (
     new Array(count).fill(0).map(() => {
@@ -60,3 +63,4 @@ export default function Burger(props) {
     </div>
   )
 }
+
