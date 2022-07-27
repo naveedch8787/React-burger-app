@@ -1,8 +1,11 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+
 import { UserContext } from '../context/UserProvider';
+
 const imgUrl = "https://react-builder-burger.firebaseapp.com/static/media/burger-logo.b8503d26.png";
-export default function Header() {
+
+const Header = () => {
 
   const user = useContext(UserContext);
   const [active, setActive] = useState(1);
@@ -54,3 +57,5 @@ export default function Header() {
     </div>
   )
 }
+
+export default Header

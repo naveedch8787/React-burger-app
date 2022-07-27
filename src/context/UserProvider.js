@@ -1,13 +1,10 @@
-import React, { createContext, useState } from 'react'
-import PropTypes from 'prop-types';
+import { createContext, useState } from 'react'
 
 const initialState = null;
-export const UserContext = createContext(initialState);
-export default function UserProvider({ children }) {
-  UserProvider.propTypes = {
-    children: PropTypes.any,
-  };
 
+export const UserContext = createContext(initialState);
+
+const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const logIn = (user) => {
@@ -16,6 +13,7 @@ export default function UserProvider({ children }) {
       localStorage.setItem('user', user.email);
     }
   }
+
   const logOut = () => {
     setUser(null);
     localStorage.clear();
@@ -28,3 +26,4 @@ export default function UserProvider({ children }) {
   )
 }
 
+export default UserProvider

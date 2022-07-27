@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import { UserContext } from '../context/UserProvider';
 import { Formik, Field, Form } from 'formik';
 import { useNavigate } from 'react-router-dom';
@@ -37,7 +37,6 @@ const LoginPage = () => {
   }
 
   return (
-    <>
       <div className='flex justify-center content-center my-20'>
         <div className='border-2 border-gray-200 shadow-lg w-[35rem] h-fit'>
           <div className='flex justify-center pt-5'>
@@ -91,7 +90,6 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
-    </>
   )
 }
 

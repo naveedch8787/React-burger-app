@@ -1,16 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+
 import { GlobalContext } from '../context/GlobalProvider';
 import { UserContext } from '../context/UserProvider';
-import { useNavigate } from 'react-router-dom';
-import CheckoutModal from './modals/CheckoutModal';
-import OrdersForm from './form/OrdersForm';
-import Burger from './Burger';
+import CheckoutModal from '../components/CheckoutModal';
+import OrdersForm from '../components/OrdersForm';
+import Burger from '../components/Burger';
+
 const LETTUCE = 0.50;
 const BACON = 0.70;
 const CHEESE = 0.40;
 const MEAT = 1.30;
 
-export default function Home() {
+const Home = () => {
   const initialPrice = 3.00;
   const navigator = useNavigate();
   const data = useContext(GlobalContext);
@@ -133,3 +135,5 @@ export default function Home() {
     </>
   )
 }
+
+export default Home

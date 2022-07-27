@@ -1,5 +1,5 @@
-import React, { createContext, useState } from 'react'
-import PropTypes from 'prop-types';
+import { createContext, useState } from 'react'
+
 const initialState = {
   ingredients: [
     { name: 'Lettuce', price: 0.50, quantity: 0 },
@@ -11,12 +11,7 @@ const initialState = {
 
 export const GlobalContext = createContext(initialState);
 
-export default function GlobalProvider({ children }) {
-
-  GlobalProvider.propTypes = {
-    children: PropTypes.any,
-  };
-
+const GlobalProvider = ({ children }) => {
   const [user, setUser] = useState(initialState);
 
   const setQuantity = (name, count) => {
@@ -48,3 +43,5 @@ export default function GlobalProvider({ children }) {
     </GlobalContext.Provider>
   )
 }
+
+export default GlobalProvider

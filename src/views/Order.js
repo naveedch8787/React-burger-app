@@ -1,9 +1,9 @@
-import React, {useContext} from 'react'
+import {useContext} from 'react'
 import { GlobalContext } from '../context/GlobalProvider'
 
-export default function Order() {
-
+const Order = () => {
   const data = useContext(GlobalContext);
+  
   return (
     <>
       {data?.user?.orders?.map((res, i) => {
@@ -28,3 +28,4 @@ export default function Order() {
   )
 }
 
+export default Order
