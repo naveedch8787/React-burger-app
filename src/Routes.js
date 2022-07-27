@@ -1,18 +1,19 @@
-/* eslint-disable no-unused-vars */
-import React, { useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { Navigate, Route, Routes } from "react-router-dom";
-import Home from './Home';
-import Header from "./Header";
-import LoginPage from "./Login";
-import Order from "./Order";
-import { UserContext } from '../context/UserProvider';
+
+import Home from './views/Home';
+import Header from "./layout/Header";
+import LoginPage from "./views/Login";
+import Order from "./views/Order";
+import { UserContext } from './context/UserProvider';
 
 
-export default function Index() {
+const Index = () => {
   const user = useContext(UserContext);
   useEffect(() => {
     user.logIn(localStorage.getItem('user'));
   }, []);
+
   return (
     <div>
       <Header />
@@ -24,3 +25,5 @@ export default function Index() {
     </div>
   )
 }
+
+export default Index

@@ -1,6 +1,4 @@
-import React from 'react'
 import { Formik, Field, Form } from 'formik';
-import PropTypes from 'prop-types';
 
 function validateEmail(value) {
   let error;
@@ -39,6 +37,7 @@ function validateStreet(value){
   }
   return error;
 }
+
 function validateCountry(value){
   let error;
   if (!value) {
@@ -48,10 +47,8 @@ function validateCountry(value){
 }
 
 
-export default function OrdersForm(props) {
-  OrdersForm.propTypes = {
-    callback: PropTypes.any,
-  };
+const OrdersForm = (props) => {
+
   return (
     <>
       <div className='flex justify-center content-center my-20'>
@@ -134,3 +131,5 @@ export default function OrdersForm(props) {
     </>
   )
 }
+
+export default OrdersForm

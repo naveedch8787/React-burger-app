@@ -1,20 +1,17 @@
-import "./App.css";
-import React from "react";
-
-import Index from "./components/Index"
+import Routes from './Routes'
 import GlobalProvider from "./context/GlobalProvider";
 import UserProvider from "./context/UserProvider";
 
-function App() {
+import "./App.css";
+
+const App = () => {
   return (
-   <>
    <GlobalProvider>
     <UserProvider>
-      <Index/>
+      <Routes/>
     </UserProvider>
    </GlobalProvider>
-   </>
-  );
+  )
 }
 
 export default App;

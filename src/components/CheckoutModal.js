@@ -1,15 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { GlobalContext } from '../../context/GlobalProvider';
-import PropTypes from 'prop-types';
 
-export default function CheckoutModal(props) {
-  CheckoutModal.propTypes = {
-    totalPrice: PropTypes.any,
-    callback:PropTypes.func
-  }
+import { GlobalContext } from '../context/GlobalProvider'
 
+const CheckoutModal = (props) => {
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
   const data = useContext(GlobalContext);
@@ -18,6 +13,7 @@ export default function CheckoutModal(props) {
   useEffect(()=>{
     setOpen(pre=>!pre);
   },[])
+
   return (
     <div>
         <Transition.Root show={open} as={Fragment}>
@@ -99,3 +95,5 @@ export default function CheckoutModal(props) {
     </div>
   )
 }
+
+export default CheckoutModal
