@@ -1,53 +1,53 @@
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form } from 'formik'
 
 function validateEmail(value) {
-  let error;
+  let error
   if (!value) {
-    error = 'Required';
+    error = 'Required'
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-    error = 'Invalid email address';
+    error = 'Invalid email address'
   }
-  return error;
+  return error
 }
 
 function validatefullName(value) {
-  let error;
+  let error
   if(!value){
-    error = 'Required';
+    error = 'Required'
   } else if (value === 'admin') {
-    error = 'Nice try!';
+    error = 'Nice try!'
   }
-  return error;
+  return error
 }
 
 function validateZipCode(value) {
-  let error;
+  let error
   if (!value) {
-    error = 'Required';
+    error = 'Required'
   } else if (!/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(value)) {
-    error = 'Invalid Zipcode';
+    error = 'Invalid Zipcode'
   }
-  return error;
+  return error
 }
 
 function validateStreet(value){
-  let error;
+  let error
   if (!value) {
-    error = 'Required';
+    error = 'Required'
   }
-  return error;
+  return error
 }
 
 function validateCountry(value){
-  let error;
+  let error
   if (!value) {
-    error = 'Required';
+    error = 'Required'
   }
-  return error;
+  return error
 }
 
 
-const OrdersForm = (props) => {
+const OrdersForm = ({callback}) => {
 
   return (
     <>
@@ -67,7 +67,7 @@ const OrdersForm = (props) => {
             }}
               onSubmit={
                  (values) => {
-                  props.callback(values);
+                  callback(values)
                 }}>
               {({ errors, touched }) => (
                 <Form>

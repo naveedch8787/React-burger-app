@@ -9,17 +9,13 @@ const Ingredient = ({type}) => {
   )
 }
 
-const Recipie = ({ count, children }) => {
-  return (
+const Recipie = ({ count, children }) => (
     new Array(count).fill(0).map(() => {
-      return children;
+      return children
     })
   )
-}
 
-const Burger = (props) => {
-
-  return (
+const Burger = (props) => (
     <div className=' h-fit min-h-[60vh]'>
       <div className="flex justify-center content-center h-fit py-[50px]">
         <div className='h-full w-[512px]'>
@@ -49,6 +45,5 @@ const Burger = (props) => {
       </div>
     </div>
   )
-}
 
 export default Burger

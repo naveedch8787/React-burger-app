@@ -1,17 +1,15 @@
-import Routes from './Routes'
 import GlobalProvider from "./context/GlobalProvider";
 import UserProvider from "./context/UserProvider";
 
-import "./App.css";
+import Routes from './Routes'
 
-const App = () => {
-  return (
-   <GlobalProvider>
+
+const App = () => (
+  <GlobalProvider>
     <UserProvider>
-      <Routes/>
+      <Routes />
     </UserProvider>
-   </GlobalProvider>
-  )
-}
+  </GlobalProvider>
+)
 
 export default App;
