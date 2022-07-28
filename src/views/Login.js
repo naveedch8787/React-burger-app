@@ -17,7 +17,7 @@ const LoginPage = () => {
   function validateEmail(value) {
     let error
     if (!value) {
-      error = 'Required';
+      error = 'Required'
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
       error = 'Invalid email address'
     }
@@ -51,10 +51,10 @@ const LoginPage = () => {
               onSubmit={
                  (values) => {
                   if(toogle){
-                    user.logIn(values);
+                    user.logIn(values)
                     navigator('/')
                   } else {
-                    setExistingUser(true);
+                    setExistingUser(true)
                   }
                 }}>
               {({ errors, touched }) => (

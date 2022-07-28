@@ -1,5 +1,5 @@
-import GlobalProvider from "./context/GlobalProvider";
-import UserProvider from "./context/UserProvider";
+import GlobalProvider from "./context/GlobalProvider"
+import UserProvider from "./context/UserProvider"
 
 import Routes from './Routes'
 
@@ -12,4 +12,4 @@ const App = () => (
   </GlobalProvider>
 )
 
-export default App;
+export default App

@@ -51,16 +51,16 @@ const Home = () => {
   const handleIngredients = (name, cost, count) => {
     switch(name){
       case'Lettuce':
-        setLetteceCount(pre => pre + count);
+        setLetteceCount(pre => pre + count)
         break
       case'Bacon':
-        setbaconCount(pre => pre + count);
+        setbaconCount(pre => pre + count)
         break
       case'Cheese':
-        setcheeseCount(pre => pre + count);
+        setcheeseCount(pre => pre + count)
         break
       case'Meat':
-        setmeatCount(pre => pre + count);
+        setmeatCount(pre => pre + count)
         break
     }
     cost > 0 ? data.setQuantity(name, 1) : data.setQuantity(name, -1)
