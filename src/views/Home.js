@@ -7,16 +7,11 @@ import CheckoutModal from '../components/CheckoutModal'
 import OrdersForm from '../components/OrdersForm'
 import Burger from '../components/Burger'
 
-const LETTUCE = 0.50
-const BACON = 0.70
-const CHEESE = 0.40
-const MEAT = 1.30
-const BURGER_BUN_PRICE = 3.00
+import {
+  BURGER_BUN_PRICE, LETTUCE, MEAT, CHEESE, BACON, lettuce, bacon, meat, cheese,
+} from '../utils/Constants'
 
 const Home = () => {
-  const navigator = useNavigate()
-  const data = useContext(GlobalContext)
-  const user = useContext(UserContext)
   const [price, setPrice] = useState(BURGER_BUN_PRICE)
   const [letteceCount, setLetteceCount] = useState(0)
   const [meatCount, setmeatCount] = useState(0)
@@ -25,12 +20,21 @@ const Home = () => {
   const [open, setOpen] = useState(false)
   const [formToogle, setFormToogle] = useState(false)
 
+  const navigator = useNavigate()
+
+  const data = useContext(GlobalContext)
+  const { user } = useContext(UserContext)
+
   useEffect(() => {
     data.setDefaultQuantity()
   }, [])
 
   useEffect(() => {
-    setPrice(BURGER_BUN_PRICE + (letteceCount * LETTUCE) + (meatCount * MEAT) + (cheeseCount * CHEESE) + (baconCount * BACON))
+    setPrice(BURGER_BUN_PRICE +
+      (letteceCount * LETTUCE) +
+      (meatCount * MEAT) +
+      (cheeseCount * CHEESE) +
+      (baconCount * BACON))
   }, [letteceCount, meatCount, cheeseCount, baconCount])
 
   const handleFormSubmit = (k) => {
@@ -47,19 +51,18 @@ const Home = () => {
     navigator('/order')
   }
 
-
   const handleIngredients = (name, cost, count) => {
     switch(name){
-      case'Lettuce':
+      case lettuce:
         setLetteceCount(pre => pre + count)
         break
-      case'Bacon':
+      case bacon:
         setbaconCount(pre => pre + count)
         break
-      case'Cheese':
+      case cheese:
         setcheeseCount(pre => pre + count)
         break
-      case'Meat':
+      case meat:
         setmeatCount(pre => pre + count)
         break
     }
@@ -78,7 +81,13 @@ const Home = () => {
   }
   return (
     <>
-      <Burger formToogle={formToogle} lettuce={letteceCount} meat={meatCount} bacon={baconCount} cheese={cheeseCount} />
+      <Burger
+        formToogle={formToogle}
+        lettuce={letteceCount}
+        meat={meatCount}
+        bacon={baconCount}
+        cheese={cheeseCount}
+      />
       {formToogle && <OrdersForm callback={handleFormSubmit} />}
       {!formToogle && <div className='w-full bg-yellow-600 '>
         <div className="flex justify-center">
@@ -110,7 +119,7 @@ const Home = () => {
               )
             })
           }
-          {user.user ? <div className="flex justify-center my-5">
+          {user? <div className="flex justify-center my-5">
             <button
               onClick={orders}
               type="button"

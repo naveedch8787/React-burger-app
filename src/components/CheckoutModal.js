@@ -6,18 +6,25 @@ import { GlobalContext } from '../context/GlobalProvider'
 
 const CheckoutModal = (props) => {
   const [open, setOpen] = useState(false)
+
   const cancelButtonRef = useRef(null)
   const data = useContext(GlobalContext)
+
   const price = props.totalPrice
 
-  useEffect(()=>{
-    setOpen(pre=>!pre)
-  },[])
+  useEffect(() => {
+    setOpen(pre => !pre)
+  }, [])
 
   return (
-    <div>
-        <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
+    <>
+      <Transition.Root show={open} as={Fragment}>
+        <Dialog
+          as="div"
+          className="relative z-10"
+          initialFocus={cancelButtonRef}
+          onClose={setOpen}
+        >
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -52,7 +59,7 @@ const CheckoutModal = (props) => {
                           <ul className='list-disc'>
                             {
                               data.user.ingredients.map(res => {
-                                return (<li key={res.name}>{res.name}&nbsp&nbsp{res.quantity}</li>)
+                                return (<li key={res.name}>{res.name}&nbsp;&nbsp;{res.quantity}</li>)
                               })
                             }
                           </ul>
@@ -92,7 +99,7 @@ const CheckoutModal = (props) => {
           </div>
         </Dialog>
       </Transition.Root>
-    </div>
+    </>
   )
 }
 

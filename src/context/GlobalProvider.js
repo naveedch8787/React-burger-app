@@ -33,9 +33,7 @@ const GlobalProvider = ({ children }) => {
     setUser((pre) => ({ ...pre, ingredients: updated }))
   }
 
-  const setOrders = (obj) => {
-    setUser((pre) => ({ ...pre, orders: [obj, ...user.orders] }))
-  }
+  const setOrders = (obj) => setUser((pre) => ({ ...pre, orders: [obj, ...user.orders] }))
 
   return (
     <GlobalContext.Provider value={{ user, setQuantity, setOrders, setDefaultQuantity }}>

@@ -3,7 +3,6 @@ import UserProvider from "./context/UserProvider"
 
 import Routes from './Routes'
 
-
 const App = () => (
   <GlobalProvider>
     <UserProvider>

@@ -46,7 +46,6 @@ function validateCountry(value){
   return error
 }
 
-
 const OrdersForm = ({callback}) => {
 
   return (

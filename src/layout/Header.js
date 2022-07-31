@@ -3,18 +3,21 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import { UserContext } from '../context/UserProvider'
 
-const imgUrl = "https://react-builder-burger.firebaseapp.com/static/media/burger-logo.b8503d26.png"
+import { imgUrl } from '../utils/Constants'
 
 const Header = () => {
-  const user = useContext(UserContext)
   const [active, setActive] = useState(1)
+
   const navigator = useNavigate()
+
+  const user = useContext(UserContext)
 
   const logOut = () => {
     setActive(1)
     user.logOut()
     navigator('/')
   }
+
   return (
     <div className=' top-0 h-14 bg-yellow-900 flex sticky justify-between'>
       <div className=''>

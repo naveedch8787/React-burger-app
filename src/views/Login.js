@@ -1,14 +1,17 @@
 import { useContext, useState } from 'react'
-import { Formik, Field, Form } from 'formik'
 import { useNavigate } from 'react-router-dom'
+import { Formik, Field, Form } from 'formik'
 
 import { UserContext } from '../context/UserProvider'
 
 const LoginPage = () => {
-  const navigator = useNavigate()
   const [toogle, setToogle] = useState(false)
-  const user =  useContext(UserContext)
   const [existingUser,setExistingUser] = useState(false)
+
+  const navigator = useNavigate()
+
+  const user =  useContext(UserContext)
+
   const toogleSetter = () => {
     setToogle(value => !value)
     setExistingUser(false)
