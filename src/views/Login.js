@@ -1,39 +1,40 @@
 import { useContext, useState } from 'react'
-import { UserContext } from '../context/UserProvider';
-import { Formik, Field, Form } from 'formik';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import { Formik, Field, Form } from 'formik'
 
+import { UserContext } from '../context/UserProvider'
 
 const LoginPage = () => {
-  const navigator = useNavigate();
-  const [toogle, setToogle] = useState(false);
-  const user =  useContext(UserContext);
-  const [existingUser,setExistingUser] = useState(false);
+  const [toogle, setToogle] = useState(false)
+  const [existingUser,setExistingUser] = useState(false)
+
+  const navigator = useNavigate()
+
+  const user =  useContext(UserContext)
+
   const toogleSetter = () => {
-    setToogle(value => {
-      return !value;
-    });
-    setExistingUser(false);
+    setToogle(value => !value)
+    setExistingUser(false)
   }
 
   function validateEmail(value) {
-    let error;
+    let error
     if (!value) {
-      error = 'Required';
+      error = 'Required'
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-      error = 'Invalid email address';
+      error = 'Invalid email address'
     }
-    return error;
+    return error
   }
 
   function validatePassword(value) {
-    let error;
+    let error
     if (!value) {
-      error = 'Required';
+      error = 'Required'
     } else if (value.length < 8) {
-      error = 'Minimum Password length must be 8 characters ';
+      error = 'Minimum Password length must be 8 characters '
     }
-    return error;
+    return error
   }
 
   return (
@@ -53,10 +54,10 @@ const LoginPage = () => {
               onSubmit={
                  (values) => {
                   if(toogle){
-                    user.logIn(values);
+                    user.logIn(values)
                     navigator('/')
                   } else {
-                    setExistingUser(true);
+                    setExistingUser(true)
                   }
                 }}>
               {({ errors, touched }) => (

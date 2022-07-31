@@ -9,46 +9,41 @@ const Ingredient = ({type}) => {
   )
 }
 
-const Recipie = ({ count, children }) => {
-  return (
+const Recipie = ({ count, children }) => (
     new Array(count).fill(0).map(() => {
-      return children;
+      return children
     })
   )
-}
 
-const Burger = (props) => {
-
-  return (
-    <div className=' h-fit min-h-[60vh]'>
-      <div className="flex justify-center content-center h-fit py-[50px]">
-        <div className='h-full w-[512px]'>
-          { props.formToogle &&
-            <div className="flex flex-col justify-center text-center mt-2 text-3xl">
-              <h1><strong>We hope it tastes well!</strong></h1>
-            </div> }
-          <div className="mt-5 upper bg-gradient-to-r from-orange-500 to-orange-400 rounded-t-[16rem] border-2 h-20 w-full"></div>
-          { props.lettuce == 0 && props.bacon ==  0 && props.cheese == 0 && props.meat == 0 &&
-            <div className="mid flex flex-col justify-center text-center mt-2 text-lg">
-              <h2><strong>No ingredients Added</strong></h2>
-            </div> }
-          <Recipie count={props.lettuce} >
-            <Ingredient type={lettuce}/>
-          </Recipie>
-          <Recipie count={props.bacon} >
-            <Ingredient type={bacon}/>
-          </Recipie>
-          <Recipie count={props.cheese} >
-            <Ingredient type={cheese}/>
-          </Recipie>
-          <Recipie count={props.meat} >
-            <Ingredient type={meat}/>
-          </Recipie>
-          <div className="lower mt-2 upper bg-gradient-to-r from-orange-500 to-orange-400 rounded-b-[2rem] border-2 h-20 w-full"></div>
-        </div>
+const Burger = (props) => (
+  <div className=' h-fit min-h-[60vh]'>
+    <div className="flex justify-center content-center h-fit py-[50px]">
+      <div className='h-full w-[512px]'>
+        { props.formToogle &&
+          <div className="flex flex-col justify-center text-center mt-2 text-3xl">
+            <h1><strong>We hope it tastes well!</strong></h1>
+          </div> }
+        <div className="mt-5 upper bg-gradient-to-r from-orange-500 to-orange-400 rounded-t-[16rem] border-2 h-20 w-full"></div>
+        { props.lettuce == 0 && props.bacon ==  0 && props.cheese == 0 && props.meat == 0 &&
+          <div className="mid flex flex-col justify-center text-center mt-2 text-lg">
+            <h2><strong>No ingredients Added</strong></h2>
+          </div> }
+        <Recipie count={props.lettuce} >
+          <Ingredient type={lettuce}/>
+        </Recipie>
+        <Recipie count={props.bacon} >
+          <Ingredient type={bacon}/>
+        </Recipie>
+        <Recipie count={props.cheese} >
+          <Ingredient type={cheese}/>
+        </Recipie>
+        <Recipie count={props.meat} >
+          <Ingredient type={meat}/>
+        </Recipie>
+        <div className="lower mt-2 upper bg-gradient-to-r from-orange-500 to-orange-400 rounded-b-[2rem] border-2 h-20 w-full"></div>
       </div>
     </div>
-  )
-}
+  </div>
+)
 
 export default Burger

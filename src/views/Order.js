@@ -1,9 +1,9 @@
-import {useContext} from 'react'
+import { useContext } from 'react'
 import { GlobalContext } from '../context/GlobalProvider'
 
 const Order = () => {
-  const data = useContext(GlobalContext);
-  
+  const data = useContext(GlobalContext)
+
   return (
     <>
       {data?.user?.orders?.map((res, i) => {
