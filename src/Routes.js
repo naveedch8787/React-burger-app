@@ -7,7 +7,7 @@ import LoginPage from './views/Login'
 import Order from './views/Order'
 import { UserContext } from './context/UserProvider'
 
-const Index = () => {
+const Routing = () => {
   const user = useContext(UserContext)
 
   useEffect(() => {
@@ -27,4 +27,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default Routing
