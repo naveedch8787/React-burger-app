@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable object-curly-newline */
 import { createContext, useState } from 'react'
 
 const initialState = {
@@ -15,7 +17,7 @@ const GlobalProvider = ({ children }) => {
   const [user, setUser] = useState(initialState)
 
   const setQuantity = (name, count) => {
-    const updatedQuantity = user.ingredients.map(res => {
+    const updatedQuantity = user.ingredients.map((res) => {
       if (res.name === name) {
         res.quantity += count
         return res
@@ -26,7 +28,7 @@ const GlobalProvider = ({ children }) => {
   }
 
   const setDefaultQuantity = () => {
-    const updated = user.ingredients.map(res => {
+    const updated = user.ingredients.map((res) => {
       res.quantity = 0
       return res
     })

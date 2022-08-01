@@ -5,7 +5,9 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "airbnb",
+        "airbnb/hooks"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -18,13 +20,24 @@
         "react"
     ],
     "rules": {
+        "semi": 0,
+        "no-param-reassign": 0,
+        "no-use-before-define": 0,
+        "no-unused-expressions": 0,
+        "arrow-body-style":0,
         "react/prop-types": "off",
-        "react/jsx-uses-react": "off",
+        "no-console": 0,
         "react/react-in-jsx-scope": "off",
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/jsx-uses-react": "off",
+        "jsx-quotes": [2, "prefer-single"],
+        "import/prefer-default-export": "off",
         "react/function-component-definition": [1, {
             "namedComponents": "arrow-function",
             "unnamedComponents": "arrow-function"
-        }]
+        }],
+        "react/jsx-filename-extension": [1, {
+            "extensions": [".js", ".jsx"]
+        }],
+        "camelcase":"error"
     }
 }

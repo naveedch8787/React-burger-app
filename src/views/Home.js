@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -8,15 +9,15 @@ import OrdersForm from '../components/OrdersForm'
 import Burger from '../components/Burger'
 
 import {
-  BURGER_BUN_PRICE, LETTUCE, MEAT, CHEESE, BACON, lettuce, bacon, meat, cheese,
+  BURGER_BUN_PRICE, LETTUCE, MEAT, CHEESE, BACON, lettuce, bacon, meat, cheese, initialCount,
 } from '../utils/Constants'
 
 const Home = () => {
   const [price, setPrice] = useState(BURGER_BUN_PRICE)
-  const [letteceCount, setLetteceCount] = useState(0)
-  const [meatCount, setmeatCount] = useState(0)
-  const [baconCount, setbaconCount] = useState(0)
-  const [cheeseCount, setcheeseCount] = useState(0)
+  const [letteceCount, setLetteceCount] = useState(initialCount)
+  const [meatCount, setmeatCount] = useState(initialCount)
+  const [baconCount, setbaconCount] = useState(initialCount)
+  const [cheeseCount, setcheeseCount] = useState(initialCount)
   const [open, setOpen] = useState(false)
   const [formToogle, setFormToogle] = useState(false)
 
@@ -27,14 +28,15 @@ const Home = () => {
 
   useEffect(() => {
     data.setDefaultQuantity()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
-    setPrice(BURGER_BUN_PRICE +
-      (letteceCount * LETTUCE) +
-      (meatCount * MEAT) +
-      (cheeseCount * CHEESE) +
-      (baconCount * BACON))
+    setPrice(BURGER_BUN_PRICE
+      + (letteceCount * LETTUCE)
+      + (meatCount * MEAT)
+      + (cheeseCount * CHEESE)
+      + (baconCount * BACON))
   }, [letteceCount, meatCount, cheeseCount, baconCount])
 
   const handleFormSubmit = (k) => {
@@ -43,27 +45,29 @@ const Home = () => {
         lettuce: letteceCount,
         bacon: baconCount,
         cheese: cheeseCount,
-        meat: meatCount
+        meat: meatCount,
       },
-      calculatedPrice: price.toFixed(2)
+      calculatedPrice: price.toFixed(2),
     })
     data.setOrders(k)
     navigator('/order')
   }
 
   const handleIngredients = (name, cost, count) => {
-    switch(name){
+    switch (name) {
       case lettuce:
-        setLetteceCount(pre => pre + count)
+        setLetteceCount((pre) => pre + count)
         break
       case bacon:
-        setbaconCount(pre => pre + count)
+        setbaconCount((pre) => pre + count)
         break
       case cheese:
-        setcheeseCount(pre => pre + count)
+        setcheeseCount((pre) => pre + count)
         break
       case meat:
-        setmeatCount(pre => pre + count)
+        setmeatCount((pre) => pre + count)
+        break
+      default:
         break
     }
     cost > 0 ? data.setQuantity(name, 1) : data.setQuantity(name, -1)
@@ -76,7 +80,7 @@ const Home = () => {
 
   const orders = () => {
     if (!(data.user.ingredients.every((item) => item.quantity === 0))) {
-      setOpen(pre => { return !pre })
+      setOpen((pre) => !pre)
     }
   }
   return (
@@ -89,50 +93,73 @@ const Home = () => {
         cheese={cheeseCount}
       />
       {formToogle && <OrdersForm callback={handleFormSubmit} />}
-      {!formToogle && <div className='w-full bg-yellow-600 '>
-        <div className="flex justify-center">
-          <div className="price text-lg pt-2">
-            <h1>Current Price = <strong>{(price).toFixed(2)}$</strong></h1>
+      {!formToogle && (
+        <div className='w-full bg-yellow-600 '>
+          <div className='flex justify-center'>
+            <div className='price text-lg pt-2'>
+              <h1>
+                Current Price =
+                <strong>
+                  {`${(price).toFixed(2)}`}
+                  $
+                </strong>
+              </h1>
+            </div>
+          </div>
+          <div className='mt-4 flex flex-col items-center'>
+            {
+              data?.user?.ingredients?.map((res, i) => {
+                return (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <div key={i}>
+                    <div className=' flex justify-center mt-2'>
+                      <h2 className='w-[5rem]'>
+                        <strong>{res.name}</strong>
+                      </h2>
+                      <button
+                        onClick={() => {
+                          if (res.quantity > 0) {
+                            handleIngredients(res.name, -res.price, -1)
+                          }
+                        }}
+                        className={res.quantity > 0
+                          ? 'mx-4 px-5 py-1 border-2 border-stone-400 bg-stone-400 hover:bg-stone-500 hover:border-stone-500'
+                          : 'cursor-not-allowed mx-4 px-5 py-1 border-2 border-stone-400 bg-stone-300'}
+                      >
+                        Less
+                      </button>
+                      <button
+                        onClick={() => handleIngredients(res.name, res.price, 1)}
+                        className='text-white mx-4 px-5 py-1 border-2 border-yellow-700 bg-yellow-800 hover:bg-yellow-900'
+                      >
+                        More
+                      </button>
+                    </div>
+                  </div>
+                )
+              })
+            }
+            {user ? (
+              <div className='flex justify-center my-5'>
+                <button
+                  onClick={orders}
+                  type='button'
+                  className={
+                    data.user.ingredients.every((item) => item.quantity === 0) ? 'cursor-not-allowed bg-slate-400 border-1 px-20 py-5'
+                      : 'bg-slate-400 border-1 px-20 py-5'
+                  }
+                >
+                  Order Now
+                </button>
+              </div>
+            ) : (
+              <div className='flex justify-center my-5'>
+                <button onClick={() => { navigator('/login') }} className='cursor-not-allowed bg-slate-400 border-1 px-[4.5rem] py-4'>SIGN UP TO ORDER</button>
+              </div>
+            )}
           </div>
         </div>
-        <div className="mt-4 flex flex-col items-center">
-          {
-            data?.user?.ingredients?.map((res, i) => {
-              return (
-                <div key={i}>
-                  <div className=' flex justify-center mt-2' >
-                    <h2 className='w-[5rem]'><strong>{res.name}</strong> </h2>
-                    <button
-                      onClick={() => {
-                        if (res.quantity > 0) {
-                          handleIngredients(res.name, -res.price, -1)
-                        }
-                      }}
-                      className={res.quantity > 0 ?
-                        'mx-4 px-5 py-1 border-2 border-stone-400 bg-stone-400 hover:bg-stone-500 hover:border-stone-500' :
-                        'cursor-not-allowed mx-4 px-5 py-1 border-2 border-stone-400 bg-stone-300'}>Less</button>
-                    <button
-                      onClick={() => handleIngredients(res.name, res.price, 1)}
-                      className='text-white mx-4 px-5 py-1 border-2 border-yellow-700 bg-yellow-800 hover:bg-yellow-900'>More</button>
-                  </div>
-                </div>
-              )
-            })
-          }
-          {user? <div className="flex justify-center my-5">
-            <button
-              onClick={orders}
-              type="button"
-              className={
-                data.user.ingredients.every((item) => item.quantity === 0) ? "cursor-not-allowed bg-slate-400 border-1 px-20 py-5" :
-                  "bg-slate-400 border-1 px-20 py-5"} >
-              Order Now
-            </button>
-          </div> : <div className="flex justify-center my-5">
-            <button onClick={() => { navigator('/login') }} className='cursor-not-allowed bg-slate-400 border-1 px-[4.5rem] py-4'>SIGN UP TO ORDER</button>
-          </div>}
-        </div>
-      </div>}
+      )}
       {open && <CheckoutModal totalPrice={price} callback={handleOpen} />}
     </>
   )
