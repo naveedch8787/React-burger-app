@@ -10,11 +10,11 @@ const Header = () => {
 
   const navigator = useNavigate()
 
-  const user = useContext(UserContext)
+  const { user, logOut } = useContext(UserContext)
 
-  const logOut = () => {
+  const logingOut = () => {
     setActive(1)
-    user.logOut()
+    logOut()
     navigator('/')
   }
 
@@ -26,29 +26,29 @@ const Header = () => {
         </div>
       </div>
       <div>
-        <ul className={user.user ? "pl-5 grid grid-cols-3" : "pl-5 grid grid-cols-2"}>
+        <ul className={user ? "pl-5 grid grid-cols-3" : "pl-5 grid grid-cols-2"}>
           <li
             onClick={() => setActive(1)}
             className={active === 1 ? " xxs:pt-[0.4rem] xs:pt-[0.5rem] sm:pt-[1.75rem] px-2 border-b-4 border-b-teal-700 bg-yellow-700" :
               "xxs:pt-[0.4rem] xs:pt-[0.5rem] sm:pt-[1.75rem] px-2 hover:border-b-4 hover:border-b-teal-700 hover:bg-yellow-700"}>
             <Link className="text-white " to="/">Build Burger</Link>
           </li>
-          {user.user &&
+          {user &&
             <li
               onClick={() => setActive(2)}
               className={active === 2 ? "pt-[1.75rem] px-2 border-b-4 border-b-teal-700 bg-yellow-700" : "pt-[1.75rem] px-2 hover:border-b-4 hover:border-b-teal-700 hover:bg-yellow-700"}>
               <Link className="text-white" to="/order">Orders</Link>
             </li>
           }
-          {!user.user && <li
+          {!user && <li
             onClick={() => setActive(3)}
             className={active === 3 ?
               "pt-[1.75rem] px-2 border-b-4 border-b-teal-700 bg-yellow-700" :
               "pt-[1.75rem] px-2 hover:border-b-4 hover:border-b-teal-700 hover:bg-yellow-700"}>
             <Link className="text-white" to="/login">Login</Link>
           </li>}
-          {user.user && <li
-            onClick={logOut}
+          {user && <li
+            onClick={logingOut}
             className={active === 3 ?
               "pt-[1.75rem] px-2 border-b-4 border-b-teal-700 bg-yellow-700" :
               "pt-[1.75rem] px-2 hover:border-b-4 hover:border-b-teal-700 hover:bg-yellow-700"}>

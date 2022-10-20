@@ -10,7 +10,7 @@ const LoginPage = () => {
 
   const navigator = useNavigate()
 
-  const user =  useContext(UserContext)
+  const { logIn } =  useContext(UserContext)
 
   const toogleSetter = () => {
     setToogle(value => !value)
@@ -54,7 +54,7 @@ const LoginPage = () => {
               onSubmit={
                  (values) => {
                   if(toogle){
-                    user.logIn(values)
+                    logIn(values)
                     navigator('/')
                   } else {
                     setExistingUser(true)

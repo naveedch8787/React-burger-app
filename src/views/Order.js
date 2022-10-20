@@ -2,11 +2,11 @@ import { useContext } from 'react'
 import { GlobalContext } from '../context/GlobalProvider'
 
 const Order = () => {
-  const data = useContext(GlobalContext)
+  const { user } = useContext(GlobalContext)
 
   return (
     <>
-      {data?.user?.orders?.map((res, i) => {
+      {user?.orders?.map((res, i) => {
         return (
           <div key={i} className='xxs:mx-[64px] lg:mx-[192px] my-10 border-[1px] shadow-lg h-fit border-gray-300 rounded-sm'>
             <div className="w-full bg-white p-5">

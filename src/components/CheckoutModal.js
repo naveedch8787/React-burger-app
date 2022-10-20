@@ -4,13 +4,11 @@ import { Dialog, Transition } from '@headlessui/react'
 
 import { GlobalContext } from '../context/GlobalProvider'
 
-const CheckoutModal = (props) => {
+const CheckoutModal = ({ callback, totalPrice }) => {
   const [open, setOpen] = useState(false)
 
   const cancelButtonRef = useRef(null)
-  const data = useContext(GlobalContext)
-
-  const price = props.totalPrice
+  const { user } = useContext(GlobalContext)
 
   useEffect(() => {
     setOpen(pre => !pre)
@@ -58,14 +56,14 @@ const CheckoutModal = (props) => {
                         <div className="mt-2">
                           <ul className='list-disc'>
                             {
-                              data.user.ingredients.map(res => {
+                              user.ingredients.map(res => {
                                 return (<li key={res.name}>{res.name}&nbsp;&nbsp;{res.quantity}</li>)
                               })
                             }
                           </ul>
                         </div>
                         <div className="mt-2">
-                          <strong>Total Price : {(price).toFixed(2)}$</strong>
+                          <strong>Total Price : {(totalPrice).toFixed(2)}$</strong>
                         </div>
                         <div className="mt-2">
                           <h3>Continue to Checkout ?</h3>
@@ -79,7 +77,7 @@ const CheckoutModal = (props) => {
                       className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
                       onClick={() => {
                         setOpen(false)
-                        props.callback(false)
+                        callback(false)
                       }}
                     >
                       Continue

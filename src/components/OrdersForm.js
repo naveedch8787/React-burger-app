@@ -46,7 +46,7 @@ function validateCountry(value){
   return error
 }
 
-const OrdersForm = ({callback}) => {
+const OrdersForm = ({ callback }) => {
 
   return (
     <>

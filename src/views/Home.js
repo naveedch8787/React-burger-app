@@ -22,11 +22,11 @@ const Home = () => {
 
   const navigator = useNavigate()
 
-  const data = useContext(GlobalContext)
-  const { user } = useContext(UserContext)
+  const { user, setDefaultQuantity, setOrders, setQuantity } = useContext(GlobalContext)
+  const { user: loginUser } = useContext(UserContext)
 
   useEffect(() => {
-    data.setDefaultQuantity()
+    setDefaultQuantity()
   }, [])
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const Home = () => {
       },
       calculatedPrice: price.toFixed(2)
     })
-    data.setOrders(k)
+    setOrders(k)
     navigator('/order')
   }
 
@@ -66,7 +66,7 @@ const Home = () => {
         setmeatCount(pre => pre + count)
         break
     }
-    cost > 0 ? data.setQuantity(name, 1) : data.setQuantity(name, -1)
+    cost > 0 ? setQuantity(name, 1) : setQuantity(name, -1)
   }
 
   const handleOpen = () => {
@@ -75,7 +75,7 @@ const Home = () => {
   }
 
   const orders = () => {
-    if (!(data.user.ingredients.every((item) => item.quantity === 0))) {
+    if (!(user.ingredients.every((item) => item.quantity === 0))) {
       setOpen(pre => { return !pre })
     }
   }
@@ -97,7 +97,7 @@ const Home = () => {
         </div>
         <div className="mt-4 flex flex-col items-center">
           {
-            data?.user?.ingredients?.map((res, i) => {
+            user?.ingredients?.map((res, i) => {
               return (
                 <div key={i}>
                   <div className=' flex justify-center mt-2' >
@@ -119,12 +119,12 @@ const Home = () => {
               )
             })
           }
-          {user? <div className="flex justify-center my-5">
+          {loginUser? <div className="flex justify-center my-5">
             <button
               onClick={orders}
               type="button"
               className={
-                data.user.ingredients.every((item) => item.quantity === 0) ? "cursor-not-allowed bg-slate-400 border-1 px-20 py-5" :
+                user.ingredients.every((item) => item.quantity === 0) ? "cursor-not-allowed bg-slate-400 border-1 px-20 py-5" :
                   "bg-slate-400 border-1 px-20 py-5"} >
               Order Now
             </button>

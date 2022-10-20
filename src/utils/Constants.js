@@ -9,5 +9,4 @@ export const bacon = 'Bacon'
 export const cheese = 'Cheese'
 export const meat = 'Meat'
 
-
 export const imgUrl = "https://react-builder-burger.firebaseapp.com/static/media/burger-logo.b8503d26.png"
